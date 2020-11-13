@@ -67,8 +67,18 @@ async def python(ctx: context, *, text):
 
     remove_destructive_commands()
 
-    if res_message != '':
+    if res_message != '' and len(res_message) <= 2000:
         await ctx.send(res_message)
+    elif len(res_message) > 2000:
+        messages = []
+        index = 0
+        while index + 2000 < len(res_message):
+            next_index = index + 2000
+            messages.append(res_message[index: next_index])
+            index = next_index
+        messages.append(res_message[index:])
+        for message in messages:
+            await ctx.send(message)
     else:
         await ctx.send('Your code had no output, but was executed successfully (I hope)')
 
