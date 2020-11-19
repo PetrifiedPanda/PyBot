@@ -89,8 +89,7 @@ async def clear(ctx: context):
     await ctx.send('python \"console\" has been cleared')
 
 
-# this also removes prints in function def
-# initions
+# this also removes prints in function definitions
 def remove_destructive_commands():
     contents = get_file_contents(py_file_path)
 
